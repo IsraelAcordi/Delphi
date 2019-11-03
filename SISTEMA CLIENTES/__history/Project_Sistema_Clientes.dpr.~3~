@@ -1,0 +1,16 @@
+program Project_Sistema_Clientes;
+
+uses
+  Vcl.Forms,
+  Unit_principal in 'fontes\Unit_principal.pas' {Form_principal},
+  Unit_datamodulo in 'fontes\Unit_datamodulo.pas' {DataModule1: TDataModule};
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.CreateForm(TForm_principal, Form_principal);
+  Application.CreateForm(TDataModule1, DataModule1);
+  Application.Run;
+end.
