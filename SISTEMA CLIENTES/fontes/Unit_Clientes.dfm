@@ -24,10 +24,6 @@ object Form_clientes: TForm_clientes
     TabOrder = 0
     object Tab_cadastro: TTabSheet
       Caption = 'Cadastro'
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object Label_id: TLabel
         Left = 56
         Top = 42
@@ -3067,6 +3063,8 @@ object Form_clientes: TForm_clientes
     object Tab_consulta: TTabSheet
       Caption = 'Consulta'
       ImageIndex = 1
+      ExplicitLeft = 8
+      ExplicitTop = 28
       object Label_pesquisarpor: TLabel
         Left = 11
         Top = 21
@@ -3074,11 +3072,18 @@ object Form_clientes: TForm_clientes
         Height = 13
         Caption = 'Pesquisar por:'
       end
+      object Label_formadepesquisa: TLabel
+        Left = 376
+        Top = 21
+        Width = 12
+        Height = 13
+        Caption = '...'
+      end
       object DBGrid1: TDBGrid
         Left = 0
-        Top = 296
+        Top = 264
         Width = 645
-        Height = 145
+        Height = 177
         Align = alBottom
         TabOrder = 0
         TitleFont.Charset = DEFAULT_CHARSET
@@ -3099,6 +3104,7 @@ object Form_clientes: TForm_clientes
           'CPF'
           'Data de Nascimento')
         TabOrder = 1
+        OnClick = RadioGroup_PesquisaClick
       end
       object Edit_Pesquisa: TEdit
         Left = 376
@@ -3115,6 +3121,32 @@ object Form_clientes: TForm_clientes
         Date = 43770.000000000000000000
         Time = 0.600082581018796200
         TabOrder = 3
+      end
+      object Button_pesquisar: TButton
+        Left = 376
+        Top = 224
+        Width = 75
+        Height = 25
+        Caption = 'Pesquisar'
+        TabOrder = 4
+        OnClick = Button_pesquisarClick
+      end
+      object Button_imprimir: TButton
+        Left = 457
+        Top = 224
+        Width = 75
+        Height = 25
+        Caption = 'Imprimir'
+        TabOrder = 5
+      end
+      object Button_voltar: TButton
+        Left = 538
+        Top = 224
+        Width = 75
+        Height = 25
+        Caption = 'Voltar'
+        TabOrder = 6
+        OnClick = Button_voltarClick
       end
     end
   end

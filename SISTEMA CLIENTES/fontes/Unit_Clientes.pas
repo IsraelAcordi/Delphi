@@ -54,6 +54,10 @@ type
     Label_pesquisarpor: TLabel;
     Edit_Pesquisa: TEdit;
     DateTimePicker1: TDateTimePicker;
+    Button_pesquisar: TButton;
+    Button_imprimir: TButton;
+    Button_voltar: TButton;
+    Label_formadepesquisa: TLabel;
     procedure SpeedButton_adicionarClick(Sender: TObject);
     procedure SpeedButton_editarClick(Sender: TObject);
     procedure SpeedButton_salvarClick(Sender: TObject);
@@ -62,6 +66,9 @@ type
     procedure SpeedButton_fecharClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure SpeedButton_localizarClick(Sender: TObject);
+    procedure Button_voltarClick(Sender: TObject);
+    procedure RadioGroup_PesquisaClick(Sender: TObject);
+    procedure Button_pesquisarClick(Sender: TObject);
   private
     { Private declarations }
     procedure configbotoes;
@@ -78,6 +85,24 @@ implementation
 
 uses Unit_datamodulo;
 
+procedure TForm_clientes.Button_pesquisarClick(Sender: TObject);
+begin
+  edit_pesquisa.Text:=trim(edit_pesquisa.Text);
+  if Edit_Pesquisa.Text='' then
+    begin
+      messagedlg('Campo de pesquisa vazio!',mtinformation,[mbok],0);
+      edit_pesquisa.SetFocus;
+    end;
+
+end;
+
+procedure TForm_clientes.Button_voltarClick(Sender: TObject);
+begin
+  pagecontrol1.TabIndex:=0;
+  tab_consulta.tabvisible:=false;
+  tab_cadastro.tabvisible:=true;
+end;
+
 procedure TForm_clientes.configbotoes;
 begin
   speedbutton_adicionar.Enabled:=datamodule1.tb_clientes.state in [dsbrowse];
@@ -93,6 +118,71 @@ begin
   tab_consulta.tabvisible:=false;
   speedbutton_salvar.Enabled:=false;
   SpeedButton_cancelar.Enabled:=false;
+  button_imprimir.Enabled:=false;
+  button_pesquisar.Enabled:=false;
+  edit_pesquisa.visible:=false;
+  label_formadepesquisa.visible:=false;
+  datetimepicker1.visible:=false;
+end;
+
+procedure TForm_clientes.RadioGroup_PesquisaClick(Sender: TObject);
+begin
+  case radiogroup_pesquisa.itemindex of
+
+  0:
+    begin
+      edit_pesquisa.visible:=true;
+      edit_pesquisa.Clear;
+      edit_pesquisa.SetFocus;
+      label_formadepesquisa.visible:=true;
+      label_formadepesquisa.Caption:='Informe o ID: ';
+      datetimepicker1.visible:=false;
+      button_pesquisar.Enabled:=true;
+    end;
+
+  1:
+    begin
+      edit_pesquisa.visible:=true;
+      edit_pesquisa.Clear;
+      edit_pesquisa.SetFocus;
+      label_formadepesquisa.visible:=true;
+      label_formadepesquisa.Caption:='Informe o Nome: ';
+      datetimepicker1.visible:=false;
+      button_pesquisar.Enabled:=true;
+    end;
+
+  2:
+    begin
+      edit_pesquisa.visible:=true;
+      edit_pesquisa.Clear;
+      edit_pesquisa.SetFocus;
+      label_formadepesquisa.visible:=true;
+      label_formadepesquisa.Caption:='Informe o RG: ';
+      datetimepicker1.visible:=false;
+      button_pesquisar.Enabled:=true;
+    end;
+
+  3:
+    begin
+      edit_pesquisa.visible:=true;
+      edit_pesquisa.clear;
+      edit_pesquisa.SetFocus;
+      label_formadepesquisa.visible:=true;
+      label_formadepesquisa.Caption:='Informe o CPF: ';
+      datetimepicker1.visible:=false;
+      button_pesquisar.Enabled:=true;
+    end;
+
+  4:
+    begin
+      edit_pesquisa.visible:=false;
+      edit_pesquisa.Clear;
+      label_formadepesquisa.visible:=true;
+      label_formadepesquisa.Caption:='Informe a data de nascimento: ';
+      datetimepicker1.visible:=true;
+      button_pesquisar.Enabled:=true;
+    end;
+  end;
 end;
 
 procedure TForm_clientes.SpeedButton_adicionarClick(Sender: TObject);
