@@ -94,6 +94,13 @@ begin
       edit_pesquisa.SetFocus;
     end;
 
+  with datamodule1.Query_consulta_clientes do
+    begin
+      close;
+      sql.Clear;
+      sql.Add('select * from clientes');
+    end;
+
 end;
 
 procedure TForm_clientes.Button_voltarClick(Sender: TObject);

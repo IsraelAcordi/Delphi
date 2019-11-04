@@ -34,37 +34,6 @@ type
     tb_clientescli_cep: TStringField;
     DS_consulta_clientes: TDataSource;
     Query_consulta_clientes: TFDQuery;
-    Query_imprimir_clientes: TFDQuery;
-    Query_imprimir_clientescli_id: TFDAutoIncField;
-    Query_imprimir_clientescli_nome: TStringField;
-    Query_imprimir_clientescli_endereco: TStringField;
-    Query_imprimir_clientescli_bairro: TStringField;
-    Query_imprimir_clientescli_cidade: TStringField;
-    Query_imprimir_clientescli_uf: TStringField;
-    Query_imprimir_clientescli_cep: TStringField;
-    Query_imprimir_clientescli_rg: TStringField;
-    Query_imprimir_clientescli_cpf: TStringField;
-    Query_imprimir_clientescli_telefone: TStringField;
-    Query_imprimir_clientescli_celular: TStringField;
-    Query_imprimir_clientescli_email: TStringField;
-    Query_imprimir_clientescli_data_nasc: TDateField;
-    Query_imprimir_clientescli_data_cad: TDateField;
-    Query_imprimir_clientescli_situacao: TStringField;
-    Query_consulta_clientescli_id: TFDAutoIncField;
-    Query_consulta_clientescli_nome: TStringField;
-    Query_consulta_clientescli_endereco: TStringField;
-    Query_consulta_clientescli_bairro: TStringField;
-    Query_consulta_clientescli_cidade: TStringField;
-    Query_consulta_clientescli_uf: TStringField;
-    Query_consulta_clientescli_cep: TStringField;
-    Query_consulta_clientescli_rg: TStringField;
-    Query_consulta_clientescli_cpf: TStringField;
-    Query_consulta_clientescli_telefone: TStringField;
-    Query_consulta_clientescli_celular: TStringField;
-    Query_consulta_clientescli_email: TStringField;
-    Query_consulta_clientescli_data_nasc: TDateField;
-    Query_consulta_clientescli_data_cad: TDateField;
-    Query_consulta_clientescli_situacao: TStringField;
     procedure DataModuleCreate(Sender: TObject);
   private
     { Private declarations }
