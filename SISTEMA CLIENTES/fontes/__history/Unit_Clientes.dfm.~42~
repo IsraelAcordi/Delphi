@@ -2,8 +2,8 @@ object Form_clientes: TForm_clientes
   Left = 0
   Top = 0
   Caption = 'Form_clientes'
-  ClientHeight = 469
-  ClientWidth = 653
+  ClientHeight = 473
+  ClientWidth = 672
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -17,8 +17,8 @@ object Form_clientes: TForm_clientes
   object PageControl1: TPageControl
     Left = 0
     Top = 0
-    Width = 653
-    Height = 469
+    Width = 672
+    Height = 473
     ActivePage = Tab_consulta
     Align = alClient
     TabOrder = 0
@@ -3079,16 +3079,83 @@ object Form_clientes: TForm_clientes
       end
       object DBGrid1: TDBGrid
         Left = 0
-        Top = 264
-        Width = 645
+        Top = 268
+        Width = 664
         Height = 177
         Align = alBottom
+        DataSource = DataModule1.DS_consulta_clientes
         TabOrder = 0
         TitleFont.Charset = DEFAULT_CHARSET
         TitleFont.Color = clWindowText
         TitleFont.Height = -11
         TitleFont.Name = 'Tahoma'
         TitleFont.Style = []
+        Columns = <
+          item
+            Expanded = False
+            FieldName = 'cli_id'
+            Title.Caption = 'ID'
+            Width = 35
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'cli_nome'
+            Title.Caption = 'Nome'
+            Width = 172
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'cli_cep'
+            Title.Caption = 'CEP'
+            Width = 93
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'cli_rg'
+            Title.Caption = 'RG'
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'cli_cpf'
+            Title.Caption = 'CPF'
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'cli_telefone'
+            Title.Caption = 'Telefone'
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'cli_celular'
+            Title.Caption = 'Celular'
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'cli_email'
+            Title.Caption = 'Email'
+            Width = 184
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'cli_data_nasc'
+            Title.Caption = 'Data de Nascimento'
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'cli_situacao'
+            Title.Caption = 'Situa'#231#227'o'
+            Width = 111
+            Visible = True
+          end>
       end
       object RadioGroup_Pesquisa: TRadioGroup
         Left = 11
@@ -3099,9 +3166,9 @@ object Form_clientes: TForm_clientes
           'ID'
           'Nome'
           'RG'
-          'CPF'
-          'Data de Nascimento')
+          'CPF')
         TabOrder = 1
+        OnClick = RadioGroup_PesquisaClick
       end
       object Edit_Pesquisa: TEdit
         Left = 376
@@ -3110,38 +3177,31 @@ object Form_clientes: TForm_clientes
         Height = 21
         TabOrder = 2
       end
-      object DateTimePicker1: TDateTimePicker
-        Left = 376
-        Top = 40
-        Width = 186
-        Height = 21
-        Date = 43770.000000000000000000
-        Time = 0.600082581018796200
-        TabOrder = 3
-      end
-      object Button1: TButton
+      object Button_pesquisar: TButton
         Left = 376
         Top = 224
         Width = 75
         Height = 25
         Caption = 'Pesquisar'
-        TabOrder = 4
+        TabOrder = 3
+        OnClick = Button_pesquisarClick
       end
-      object Button2: TButton
+      object Button_imprimir: TButton
         Left = 457
         Top = 224
         Width = 75
         Height = 25
         Caption = 'Imprimir'
-        TabOrder = 5
+        TabOrder = 4
       end
-      object Button3: TButton
+      object Button_voltar: TButton
         Left = 538
         Top = 224
         Width = 75
         Height = 25
         Caption = 'Voltar'
-        TabOrder = 6
+        TabOrder = 5
+        OnClick = Button_voltarClick
       end
     end
   end

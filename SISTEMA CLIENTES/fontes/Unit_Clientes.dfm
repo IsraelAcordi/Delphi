@@ -22,12 +22,8 @@ object Form_clientes: TForm_clientes
     ActivePage = Tab_consulta
     Align = alClient
     TabOrder = 0
-    ExplicitWidth = 653
-    ExplicitHeight = 469
     object Tab_cadastro: TTabSheet
       Caption = 'Cadastro'
-      ExplicitWidth = 645
-      ExplicitHeight = 441
       object Label_id: TLabel
         Left = 56
         Top = 42
@@ -3067,8 +3063,8 @@ object Form_clientes: TForm_clientes
     object Tab_consulta: TTabSheet
       Caption = 'Consulta'
       ImageIndex = 1
-      ExplicitWidth = 645
-      ExplicitHeight = 441
+      ExplicitLeft = 0
+      ExplicitTop = 28
       object Label_pesquisarpor: TLabel
         Left = 11
         Top = 21
@@ -3077,11 +3073,16 @@ object Form_clientes: TForm_clientes
         Caption = 'Pesquisar por:'
       end
       object Label_formadepesquisa: TLabel
-        Left = 376
+        Left = 328
         Top = 21
-        Width = 12
+        Width = 1
         Height = 13
-        Caption = '...'
+      end
+      object label_cont_clientes: TLabel
+        Left = 11
+        Top = 236
+        Width = 3
+        Height = 13
       end
       object DBGrid1: TDBGrid
         Left = 0
@@ -3172,52 +3173,51 @@ object Form_clientes: TForm_clientes
           'ID'
           'Nome'
           'RG'
-          'CPF'
-          'Data de Nascimento')
+          'CPF')
         TabOrder = 1
         OnClick = RadioGroup_PesquisaClick
       end
       object Edit_Pesquisa: TEdit
-        Left = 376
+        Left = 328
         Top = 40
         Width = 225
         Height = 21
         TabOrder = 2
       end
-      object DateTimePicker1: TDateTimePicker
-        Left = 376
-        Top = 40
-        Width = 186
-        Height = 21
-        Date = 43770.000000000000000000
-        Time = 0.600082581018796200
-        TabOrder = 3
-      end
       object Button_pesquisar: TButton
-        Left = 376
+        Left = 288
         Top = 224
         Width = 75
         Height = 25
         Caption = 'Pesquisar'
-        TabOrder = 4
+        TabOrder = 3
         OnClick = Button_pesquisarClick
       end
       object Button_imprimir: TButton
-        Left = 457
+        Left = 369
         Top = 224
         Width = 75
         Height = 25
         Caption = 'Imprimir'
-        TabOrder = 5
+        TabOrder = 4
       end
       object Button_voltar: TButton
-        Left = 538
+        Left = 450
         Top = 224
         Width = 75
         Height = 25
         Caption = 'Voltar'
-        TabOrder = 6
+        TabOrder = 5
         OnClick = Button_voltarClick
+      end
+      object Button_exibir_todos_registros: TButton
+        Left = 531
+        Top = 224
+        Width = 116
+        Height = 25
+        Caption = 'Exibir todos registros'
+        TabOrder = 6
+        OnClick = Button_exibir_todos_registrosClick
       end
     end
   end

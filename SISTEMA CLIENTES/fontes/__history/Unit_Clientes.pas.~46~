@@ -53,7 +53,6 @@ type
     RadioGroup_Pesquisa: TRadioGroup;
     Label_pesquisarpor: TLabel;
     Edit_Pesquisa: TEdit;
-    DateTimePicker1: TDateTimePicker;
     Button_pesquisar: TButton;
     Button_imprimir: TButton;
     Button_voltar: TButton;
@@ -68,6 +67,7 @@ type
     procedure SpeedButton_localizarClick(Sender: TObject);
     procedure Button_voltarClick(Sender: TObject);
     procedure RadioGroup_PesquisaClick(Sender: TObject);
+    procedure Button_pesquisarClick(Sender: TObject);
   private
     { Private declarations }
     procedure configbotoes;
@@ -83,6 +83,24 @@ implementation
 {$R *.dfm}
 
 uses Unit_datamodulo;
+
+procedure TForm_clientes.Button_pesquisarClick(Sender: TObject);
+begin
+  edit_pesquisa.Text:=trim(edit_pesquisa.Text);
+  if Edit_Pesquisa.Text='' then
+    begin
+      messagedlg('Campo de pesquisa vazio!',mtinformation,[mbok],0);
+      edit_pesquisa.SetFocus;
+    end;
+
+  with datamodule1.Query_consulta_clientes do
+    begin
+      close;
+      sql.Clear;
+      sql.Add('select * from clientes');
+    end;
+
+end;
 
 procedure TForm_clientes.Button_voltarClick(Sender: TObject);
 begin
@@ -107,6 +125,7 @@ begin
   speedbutton_salvar.Enabled:=false;
   SpeedButton_cancelar.Enabled:=false;
   button_imprimir.Enabled:=false;
+  button_pesquisar.Enabled:=false;
   edit_pesquisa.visible:=false;
   label_formadepesquisa.visible:=false;
   datetimepicker1.visible:=false;
@@ -120,36 +139,44 @@ begin
     begin
       edit_pesquisa.visible:=true;
       edit_pesquisa.Clear;
+      edit_pesquisa.SetFocus;
       label_formadepesquisa.visible:=true;
       label_formadepesquisa.Caption:='Informe o ID: ';
       datetimepicker1.visible:=false;
+      button_pesquisar.Enabled:=true;
     end;
 
   1:
     begin
       edit_pesquisa.visible:=true;
       edit_pesquisa.Clear;
+      edit_pesquisa.SetFocus;
       label_formadepesquisa.visible:=true;
       label_formadepesquisa.Caption:='Informe o Nome: ';
       datetimepicker1.visible:=false;
+      button_pesquisar.Enabled:=true;
     end;
 
   2:
     begin
       edit_pesquisa.visible:=true;
       edit_pesquisa.Clear;
+      edit_pesquisa.SetFocus;
       label_formadepesquisa.visible:=true;
       label_formadepesquisa.Caption:='Informe o RG: ';
       datetimepicker1.visible:=false;
+      button_pesquisar.Enabled:=true;
     end;
 
   3:
     begin
       edit_pesquisa.visible:=true;
       edit_pesquisa.clear;
+      edit_pesquisa.SetFocus;
       label_formadepesquisa.visible:=true;
       label_formadepesquisa.Caption:='Informe o CPF: ';
       datetimepicker1.visible:=false;
+      button_pesquisar.Enabled:=true;
     end;
 
   4:
@@ -159,6 +186,7 @@ begin
       label_formadepesquisa.visible:=true;
       label_formadepesquisa.Caption:='Informe a data de nascimento: ';
       datetimepicker1.visible:=true;
+      button_pesquisar.Enabled:=true;
     end;
   end;
 end;

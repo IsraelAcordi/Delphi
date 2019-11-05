@@ -87,10 +87,18 @@ uses Unit_datamodulo;
 
 procedure TForm_clientes.Button_pesquisarClick(Sender: TObject);
 begin
-  if Edit_Pesquisa.Text=' ' then
+  edit_pesquisa.Text:=trim(edit_pesquisa.Text);
+  if Edit_Pesquisa.Text='' then
     begin
       messagedlg('Campo de pesquisa vazio!',mtinformation,[mbok],0);
       edit_pesquisa.SetFocus;
+    end;
+
+  with datamodule1.Query_consulta_clientes do
+    begin
+      close;
+      sql.Clear;
+      sql.Add('select * from clientes');
     end;
 
 end;
@@ -132,6 +140,7 @@ begin
     begin
       edit_pesquisa.visible:=true;
       edit_pesquisa.Clear;
+      edit_pesquisa.SetFocus;
       label_formadepesquisa.visible:=true;
       label_formadepesquisa.Caption:='Informe o ID: ';
       datetimepicker1.visible:=false;
@@ -142,6 +151,7 @@ begin
     begin
       edit_pesquisa.visible:=true;
       edit_pesquisa.Clear;
+      edit_pesquisa.SetFocus;
       label_formadepesquisa.visible:=true;
       label_formadepesquisa.Caption:='Informe o Nome: ';
       datetimepicker1.visible:=false;
@@ -152,6 +162,7 @@ begin
     begin
       edit_pesquisa.visible:=true;
       edit_pesquisa.Clear;
+      edit_pesquisa.SetFocus;
       label_formadepesquisa.visible:=true;
       label_formadepesquisa.Caption:='Informe o RG: ';
       datetimepicker1.visible:=false;
@@ -162,6 +173,7 @@ begin
     begin
       edit_pesquisa.visible:=true;
       edit_pesquisa.clear;
+      edit_pesquisa.SetFocus;
       label_formadepesquisa.visible:=true;
       label_formadepesquisa.Caption:='Informe o CPF: ';
       datetimepicker1.visible:=false;

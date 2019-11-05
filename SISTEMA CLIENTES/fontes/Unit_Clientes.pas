@@ -53,11 +53,12 @@ type
     RadioGroup_Pesquisa: TRadioGroup;
     Label_pesquisarpor: TLabel;
     Edit_Pesquisa: TEdit;
-    DateTimePicker1: TDateTimePicker;
     Button_pesquisar: TButton;
     Button_imprimir: TButton;
     Button_voltar: TButton;
     Label_formadepesquisa: TLabel;
+    label_cont_clientes: TLabel;
+    Button_exibir_todos_registros: TButton;
     procedure SpeedButton_adicionarClick(Sender: TObject);
     procedure SpeedButton_editarClick(Sender: TObject);
     procedure SpeedButton_salvarClick(Sender: TObject);
@@ -69,9 +70,11 @@ type
     procedure Button_voltarClick(Sender: TObject);
     procedure RadioGroup_PesquisaClick(Sender: TObject);
     procedure Button_pesquisarClick(Sender: TObject);
+    procedure Button_exibir_todos_registrosClick(Sender: TObject);
   private
     { Private declarations }
     procedure configbotoes;
+    procedure contadorderegistros;
   public
     { Public declarations }
   end;
@@ -84,6 +87,20 @@ implementation
 {$R *.dfm}
 
 uses Unit_datamodulo;
+
+procedure TForm_clientes.Button_exibir_todos_registrosClick(Sender: TObject);
+  begin
+    with datamodule1.Query_consulta_clientes do
+    begin
+      close;
+      sql.Clear;
+      sql.Add('select * from clientes');
+      Open;
+
+      contadorderegistros;
+
+    end;
+  end;
 
 procedure TForm_clientes.Button_pesquisarClick(Sender: TObject);
 begin
@@ -99,9 +116,42 @@ begin
       close;
       sql.Clear;
       sql.Add('select * from clientes');
-    end;
 
-end;
+      case radiogroup_pesquisa.itemindex of
+
+      0:
+        begin
+          sql.Add('where cli_id = :pesquisa');
+          parambyname('pesquisa').value:=Edit_Pesquisa.Text;
+        end;
+
+      1:
+        begin
+          sql.Add('where cli_nome like :pesquisa');
+          parambyname('pesquisa').Value:= '%' + edit_pesquisa.Text + '%';
+        end;
+
+      2:
+         begin
+          sql.Add('where cli_rg = :pesquisa');
+          parambyname('pesquisa').value:=Edit_Pesquisa.Text;
+        end;
+
+      3:
+       begin
+          sql.Add('where cli_cpf = :pesquisa');
+          parambyname('pesquisa').value:=Edit_Pesquisa.Text;
+        end;
+      end;
+
+      open;
+
+      contadorderegistros;
+
+      end;
+
+
+    end;
 
 procedure TForm_clientes.Button_voltarClick(Sender: TObject);
 begin
@@ -119,6 +169,26 @@ begin
   speedbutton_cancelar.Enabled:=datamodule1.tb_clientes.state in [dsedit,dsinsert];
 end;
 
+procedure TForm_clientes.contadorderegistros;
+begin
+  if datamodule1.Query_consulta_clientes.recordcount = 0 then
+        begin
+          label_cont_clientes.caption:='Nenhum registro encontrado.';
+          button_imprimir.Enabled:=false;
+        end
+      else
+        if datamodule1.Query_consulta_clientes.recordcount = 1 then
+          begin
+            label_cont_clientes.Caption:=inttostr(datamodule1.Query_consulta_clientes.recordcount) + ' registro encontrado.';
+            button_imprimir.Enabled:=true;
+          end
+      else
+        begin
+          label_cont_clientes.Caption:=inttostr(datamodule1.Query_consulta_clientes.recordcount) + ' registros encontrados.';
+          button_imprimir.Enabled:=true;
+        end;
+end;
+
 procedure TForm_clientes.FormCreate(Sender: TObject);
 begin
   pagecontrol1.TabIndex:=0;
@@ -129,7 +199,6 @@ begin
   button_pesquisar.Enabled:=false;
   edit_pesquisa.visible:=false;
   label_formadepesquisa.visible:=false;
-  datetimepicker1.visible:=false;
 end;
 
 procedure TForm_clientes.RadioGroup_PesquisaClick(Sender: TObject);
@@ -143,7 +212,6 @@ begin
       edit_pesquisa.SetFocus;
       label_formadepesquisa.visible:=true;
       label_formadepesquisa.Caption:='Informe o ID: ';
-      datetimepicker1.visible:=false;
       button_pesquisar.Enabled:=true;
     end;
 
@@ -154,7 +222,6 @@ begin
       edit_pesquisa.SetFocus;
       label_formadepesquisa.visible:=true;
       label_formadepesquisa.Caption:='Informe o Nome: ';
-      datetimepicker1.visible:=false;
       button_pesquisar.Enabled:=true;
     end;
 
@@ -165,7 +232,6 @@ begin
       edit_pesquisa.SetFocus;
       label_formadepesquisa.visible:=true;
       label_formadepesquisa.Caption:='Informe o RG: ';
-      datetimepicker1.visible:=false;
       button_pesquisar.Enabled:=true;
     end;
 
@@ -176,7 +242,6 @@ begin
       edit_pesquisa.SetFocus;
       label_formadepesquisa.visible:=true;
       label_formadepesquisa.Caption:='Informe o CPF: ';
-      datetimepicker1.visible:=false;
       button_pesquisar.Enabled:=true;
     end;
 
@@ -186,7 +251,6 @@ begin
       edit_pesquisa.Clear;
       label_formadepesquisa.visible:=true;
       label_formadepesquisa.Caption:='Informe a data de nascimento: ';
-      datetimepicker1.visible:=true;
       button_pesquisar.Enabled:=true;
     end;
   end;
